@@ -1,0 +1,42 @@
+﻿<Window
+    x:Class="ExampleApplication.NotificationToast"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  Title="Notification Popup" Width="300" SizeToContent="Height"
+  WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Grid RenderTransformOrigin="0,1" >
+
+        <!-- Notification area -->
+        <Border BorderThickness="1" Background="LightBlue" BorderBrush="Black" Name="NotificationArea">
+            <StackPanel Margin="10">
+                <TextBlock TextWrapping="Wrap" Margin="5" Name="NotificationHeader" FontWeight="Bold" Foreground="White" FontSize="22" FontFamily="Calibri">
+                    Notification data
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="5" Name="NotificationText" Foreground="White" FontSize="14" FontFamily="Calibri">
+                    Something just happened and you are being notified of it.
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <!-- Animation -->
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard Completed="Storyboard_Completed">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:5" Value="1"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleY="1" />
+        </Grid.RenderTransform>
+
+    </Grid>
+
+</Window>
